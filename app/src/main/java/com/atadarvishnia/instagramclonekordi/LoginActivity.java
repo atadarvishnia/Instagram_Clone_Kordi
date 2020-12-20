@@ -3,6 +3,7 @@ package com.atadarvishnia.instagramclonekordi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnLogin;
     private TextView tvGoToSignUp;
     private ProgressBar progressBar;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loginUser();
-                progressBar.setVisibility(View.VISIBLE);
+                progressDialog = new ProgressDialog(LoginActivity.this);
+                progressDialog.setMessage("Login: " + edtUsername.getText().toString().trim());
+                progressDialog.setCancelable(false);
+                progressDialog.show();
             }
         });
 
@@ -76,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
         if (edtUsername.getText().toString().trim().length() == 0
          || edtPassword.getText().toString().trim().matches("")) {
 
-            progressBar.setVisibility(View.GONE);
+            progressDialog.dismiss();
             alertDialogDisplay("Login...", "Please fill all fields!", true);
 
         } else {
@@ -86,10 +91,10 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void done(ParseUser user, ParseException e) {
                             if (user != null && e == null) {
-                                progressBar.setVisibility(View.GONE);
+                                progressDialog.dismiss();
                                 goToMainActivity();
                             } else {
-                                progressBar.setVisibility(View.GONE);
+                                progressDialog.dismiss();
                                 alertDialogDisplay("Login...", e.getMessage(), true);
                             }
                         }
