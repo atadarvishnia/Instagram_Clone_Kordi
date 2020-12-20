@@ -50,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setupView() {
+        setTitle("Login");
         edtUsername = findViewById(R.id.edtLoginUsername);
         edtPassword = findViewById(R.id.edtLoginPassword);
         btnLogin = findViewById(R.id.btnLogin);

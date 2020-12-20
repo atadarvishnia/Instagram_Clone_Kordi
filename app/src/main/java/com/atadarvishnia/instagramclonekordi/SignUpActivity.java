@@ -48,6 +48,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void setupView() {
+        setTitle("Sign Up");
         edtEmail = findViewById(R.id.edtSignUpEmail);
         edtUsername = findViewById(R.id.edtSignUpUsername);
         edtPassword = findViewById(R.id.edtSignUpPassword);
